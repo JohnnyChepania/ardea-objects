@@ -1,0 +1,5 @@
+import { Product, formatPrice } from '@/data/products';
+
+type ProductDetailProps = { product: Product; onClose: () => void; onAdd: (product: Product) => void };
+
+export function ProductDetail({ product, onClose, onAdd }: ProductDetailProps) { return <div className="modal-backdrop" onClick={onClose}><div className="product-detail" onClick={(event) => event.stopPropagation()}><button className="close-button" onClick={onClose} aria-label="Закрыть">×</button><div className="detail-image"><img src={product.image} alt={product.name} /></div><div className="detail-copy"><span className="eyebrow">{product.category}</span><h2>{product.name}</h2><strong className="detail-price">{formatPrice(product.price)}</strong><p className="detail-description">{product.description}</p><div className="detail-specs"><div><span>Материалы</span><p>{product.materials.join(' · ')}</p></div><div><span>Размер</span><p>{product.dimensions}</p></div></div><button className="primary-button detail-add" onClick={() => onAdd(product)}>Добавить в корзину <span>+</span></button><p className="detail-note">Доставка по России · Срок 2–6 недель</p></div></div></div>; }
